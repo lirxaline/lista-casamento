@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nosso Casamento</title>
+
+<style>
+body{font-family:'Segoe UI',sans-serif;margin:0;background:#fbf9ff;color:#333;scroll-behavior:smooth}
+header{background:linear-gradient(135deg,#c8b6ff,#e9e1ff);text-align:center;padding:80px 20px;color:#4b3f72}
+header h1{font-size:48px;margin:0}
+header p{font-size:20px;margin-top:10px}
+.countdown{margin-top:20px;font-size:22px;font-weight:bold}
+section{padding:60px 20px;max-width:1100px;margin:auto}
+.title{text-align:center;color:#7b5cc4;margin-bottom:40px;font-size:32px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.gallery img{width:100%;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 14px rgba(0,0,0,0.08);text-align:center;transition:transform .2s}
+.card:hover{transform:translateY(-5px)}
+.card img{width:100%;border-radius:8px;margin-bottom:10px}
+.pix-box{background:white;border:2px dashed #b9a3e3;padding:25px;text-align:center;border-radius:12px}
+button{background:#b9a3e3;border:none;padding:12px 18px;color:white;border-radius:8px;cursor:pointer;margin-top:10px;font-size:15px}
+button:hover{background:#9c84dd}
+.map-btn{background:#b9a3e3;border:none;padding:12px 18px;color:white;border-radius:8px;cursor:pointer;margin-top:10px;font-size:15px}
+.map-btn:hover{background:#9c84dd}
+.rsvp{background:white;padding:25px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);max-width:500px;margin:auto}
+input,select{width:100%;padding:10px;margin-top:10px;margin-bottom:10px;border-radius:6px;border:1px solid #ddd}
+footer{background:#b9a3e3;color:white;text-align:center;padding:30px;margin-top:60px}
+.decor{text-align:center;font-size:26px;color:#5c8f5f;margin-bottom:20px}
+</style>
+
+<script>
+
+const PIX_KEY = "alinegabrielle876@gmail.com";
+
+function copiarPix(){
+
+const chave = PIX_KEY;
+
+if (navigator.clipboard && window.isSecureContext) {
+ navigator.clipboard.writeText(chave)
+ .then(()=>alert('Chave PIX copiada!'))
+ .catch(()=>fallbackCopy(chave));
+}
+else{
+ fallbackCopy(chave);
+}
+
+}
+
+function fallbackCopy(text){
+
+const input=document.createElement("textarea");
+input.value=text;
+document.body.appendChild(input);
+input.select();
+
+try{
+ document.execCommand("copy");
+ alert("Chave PIX copiada!");
+}
+catch(err){
+ prompt("Copie manualmente a chave PIX:",text);
+}
+
+document.body.removeChild(input);
+
+}
+
+function confirmar(){
+alert('Presença confirmada! Obrigado por celebrar conosco!');
+}
+
+function atualizarContador(){
+const dataCasamento = new Date("2026-04-11 16:30:00").getTime();
+const agora = new Date().getTime();
+const distancia = dataCasamento - agora;
+
+const dias = Math.floor(distancia / (1000*60*60*24));
+const horas = Math.floor((distancia % (1000*60*60*24))/(1000*60*60));
+
+if(distancia>0){
+document.getElementById("contador").innerHTML = dias + " dias e " + horas + " horas para o grande dia 💜";
+}else{
+document.getElementById("contador").innerHTML = "O grande dia chegou!";
+}
+}
+
+setInterval(atualizarContador,1000);
+
+function abrirMapa(){
+const linkMapa = "https://maps.app.goo.gl/zJrLQ9JFTjT6vjz99";
+window.open(linkMapa,'_blank');
+}
+
+function reservar(btn){
+
+const nome = prompt("Digite seu nome para reservar este presente:");
+
+if(!nome) return;
+
+const card = btn.closest(".card");
+
+card.innerHTML = "<p><b>Reservado por " + nome + " 💜</b></p>";
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Nosso Casamento</h1>
+<p>Estamos muito felizes em compartilhar esse momento com você</p>
+<div class="countdown" id="contador"></div>
+</header>
+
+<section>
+<div class="decor">🌿 Nossa História 🌿</div>
+<p style="text-align:center;max-width:700px;margin:auto">
+Nossa história começou de forma simples, mas cheia de significado. Entre risadas, conversas e momentos especiais fomos construindo algo que hoje se tornou nosso maior sonho: caminhar juntos pela vida.
+</p>
+<br>
+<div class="gallery">
+<img src="img/noivos1.jpeg">
+<img src="img/noivos2.jpeg">
+<img src="img/noivos3.jpeg">
+</div>
+</section>
+
+<section>
+<h2 class="title">Local da Cerimônia</h2>
+
+<div style="background:white;border-radius:14px;padding:30px;box-shadow:0 6px 16px rgba(0,0,0,0.08);text-align:center;max-width:650px;margin:auto">
+
+<h3 style="color:#5c8f5f;margin-top:0">🌿Chácara Primavera 1🌿</h3>
+
+<p style="font-size:20px;margin:10px 0;text-align:center;font-family:'Georgia',serif;letter-spacing:0.5px;color:#555"><b>Data:</b> 11/03/2026</p>
+<p style="font-size:20px;margin:10px 0;text-align:center;font-family:'Georgia',serif;letter-spacing:0.5px;color:#555"><b>Horário:</b> 16h30</p>
+
+<p style="margin-top:15px;color:#555">
+Preparamos tudo com muito carinho para celebrar esse momento especial.
+Clique no botão abaixo para abrir a localização diretamente no Google Maps.
+</p>
+
+<button class="map-btn" onclick="abrirMapa()">📍 Abrir localização no Google Maps</button>
+
+<div style="margin-top:25px;font-size:14px;color:#777">
+Dica: recomendamos chegar com alguns minutinhos de antecedência para aproveitar cada momento conosco 💜
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+<h2 class="title">Sobre os Presentes</h2>
+<p style="text-align:center;max-width:750px;margin:auto">
+O mais importante para nós é poder celebrar esse momento tão especial ao lado das pessoas que amamos. Sua presença já é o nosso maior presente.💜
+</p>
+<br>
+<p style="text-align:center;max-width:750px;margin:auto">
+Mas, para quem deseja nos presentear, preferimos contribuições em <b>dinheiro ou via PIX</b>, que irão nos ajudar a construir nossos próximos sonhos e também a aproveitar nossa lua de mel.
+</p>
+<br>
+<p style="text-align:center;max-width:750px;margin:auto">
+Ainda assim, deixamos algumas sugestões de <b>presentes físicos</b> para quem prefere presentear dessa forma. Qualquer gesto será recebido com muito carinho e gratidão.
+</p>
+</section>
+
+<section>
+<h2 class="title">Presentes Físicos</h2>
+<div class="card-grid">
+
+<div class="card"><img src="img/lencolcama.jpg"><p>Jogo de Lençóis</p></div>
+
+<div class="card"><img src="img/miniprocessador.png"><p>Mini processador de alimentos elétrico</p></div>
+
+<div class="card"><img src="img/aspirador.jpg"><p>Aspirador portátil</p></div>
+
+<div class="card"><img src="img/paneladepressao.jpg"><p>Panela de pressão elétrica</p></div>
+
+<div class="card"><img src="img/ferrodepassar.png"><p>Ferro de passar a vapor</p></div>
+
+<div class="card"><img src="img/cafeteiraeletrica.jpg"><p>Cafeteira elétrica</p></div>
+
+<div class="card"><img src="img/tarvessadeceramica.jpg"><p>Travessas de cerâmica</p></div>
+
+<div class="card"><img src="img/kitcriadomudo.jpg"><p>Kit de criado mudo</p></div>
+
+</div>
+</section>
+
+<section>
+
+<h2 class="title">Presente via PIX</h2>
+
+<div class="pix-box">
+
+<p>Se preferir, você pode contribuir com nossa lua de mel.</p>
+
+<p id="pix">alinegabrielle876@gmail.com</p>
+<p id="banco">Banco Inter<br>Aline Gabrielle Alves de Lira</p>
+
+<button onclick="copiarPix()">Copiar chave PIX</button>
+
+<br><br>
+
+<p>Ou escaneie o QR Code:</p>
+
+<img src="img/qrcode-pix.jpeg" width="180">
+
+</div>
+
+</section>
+
+<section>
+<h2 class="title">Operação Lua de Mel</h2>
+
+<div class="card-grid">
+
+<div class="card"><img src="img/sopranaodizer.jpg"><p>Só pra não dizer que não dei nada...<br>R$30</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><img src="img/soneca.jpg"><p>Soneca patrocinada<br>R$70</p><br><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><br><img src="img/cinema.jpg"><p>Cinema do casal<br>R$80</p><br><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><img src="img/cafecama.jpg"><p>Café romântico<br>R$90</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><br><img src="img/pratonoivo.jpg"><p>Cota para acabar a fome do noivo<br>R$100</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><img src="img/pizza.png"><p>Pizza da noite preguiçosa<br>R$120</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><img src="img/noivaatrasar.jpg"><p>Para a noiva não atrasar<br>R$130</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><img src="img/noivacoberta.png"><p>Edredom para a noiva estar sempre coberta de razão<br>R$140</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><img src="img/cortenoivo.jpg"><p>Corte de cabelo do noivo por 6 meses<br>R$150</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><img src="img/viajar.jpg"><p>Explorar novo lugar<br>R$160</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><img src="img/jantar.jpg"><p>Jantar romântico<br>R$180</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><br><br><img src="img/netflix.jpg"><p>12 meses de Netflix<br>R$239</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><img src="img/aviao.jpg"><p>Combustível do avião imaginário<br>R$250</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><br><br><br><img src="img/vergonha.jpg"><p>Curso de culinária para a noiva<br>R$300</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+<div class="card"><img src="img/primeirolugar.png"><p>Primeiro lugar na fila do buffet(conforimar via whatsApp)<br>R$350</p><button onclick="copiarPix()">💳 Copiar PIX</button><button onclick="window.open('https://wa.me/5568992467533?text=Ol%C3%A1!%20Eu%20escolhi%20o%20presente%20Primeiro%20lugar%20na%20fila%20do%20buffet%20no%20site%20do%20casamento.','_blank')">Reservar</button></div>
+
+<div class="card"><img src="img/eupago.jpg"><p>Deixa que eu pago TUDO!<br>R$1000</p><button onclick="copiarPix()">💳 Copiar PIX</button></div>
+
+</div>
+</section>
+
+<section>
+<h2 class="title">Galeria</h2></h2>
+<div class="gallery">
+<img src="img/noivos6.jpeg">
+<img src="img/noivos7.jpeg">
+<img src="img/noivos8.jpeg">
+<img src="img/noivos9.jpeg">
+</div>
+</section>
+
+<footer>
+<p>Obrigado por fazer parte da nossa história 💜</p>
+</footer>
+
+</body>
+</html>
